@@ -1,0 +1,20 @@
+nb:
+  plugins:
+    games:
+      title: Games
+  admin:
+    games:
+      index:
+        title: Games
+        create_new: Lag en ny Game
+        reorder: Endre rekkefølgen på Games
+        reorder_done: Ferdig å endre rekkefølgen Games
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Games enda. Klikk på "Lag en ny Game" for å legge til din første game.
+      game:
+        view_live_html: Vis hvordan denne game ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne game
+        delete: Fjern denne game permanent
+  games:
+    show:
+      other: Andre Games
