@@ -11,7 +11,7 @@
 
   <div class='field'>
     <%= f.label :platforms -%>
-    <%= collection_select(:console, :id, Console.find(:all, :order => "name"), :id, :name, {}, {:class => 'larger', :multiple => true, :size=>6}) -%>
+    <%= collection_select(:consoles, :id, Console.find(:all, :order => "name"), :id, :name, { :selected => @game.consoles.collect{|x| x.id}}, {:class => 'larger', :multiple => true, :size=>6}) -%>
   </div>
   
   <div class='field'>

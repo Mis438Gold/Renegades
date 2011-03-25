@@ -10,7 +10,7 @@ module Admin
       render :partial => 'games' if request.xhr?
     end
 
-    #My Methods
+    #Overload Crudify methods
     def create
       # if the position field exists, set this object as last object, given the conditions of this class.
       if Game.column_names.include?("position")
@@ -20,6 +20,7 @@ module Admin
       end
 
       if (@game = Game.create(params[:game])).valid?
+        create_console_games
         (request.xhr? ? flash.now : flash).notice = t(
           'refinery.crudify.created',
           :what => "'#{@game.title}'"
@@ -53,6 +54,7 @@ module Admin
 
     def update
       if @game.update_attributes(params[:game])
+        update_console_games
         (request.xhr? ? flash.now : flash).notice = t(
           'refinery.crudify.updated',
           :what => "'#{@game.title}'"
@@ -87,6 +89,7 @@ module Admin
     def destroy
       # object gets found by find_game function
       title = @game.title
+      @game.consoles.clear
       if @game.destroy
         flash.notice = t('destroyed', :scope => 'refinery.crudify', :what => "'#{title}'")
       end
@@ -94,15 +97,21 @@ module Admin
     end
 
     def create_console_games
-      #destroy any records that may exist
-      @game.consoles.clear
+      params[:consoles][:id].each { |c|
+        @game.consoles.push(Console.find(c))
+        }
+    end
 
-      #add the new consoles
-      params[:id]
+    def update_console_games
+      #destroy any records that may exist
+      destroy_console_games
+
+      #add the new records
+      create_console_games
     end
 
     def destroy_console_games
-
+      @game.consoles.clear
     end
     
   end
