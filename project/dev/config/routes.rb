@@ -1,4 +1,6 @@
 Dev::Application.routes.draw do
+  devise_for :club_members
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
