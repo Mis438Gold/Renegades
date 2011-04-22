@@ -30,20 +30,7 @@
   <p><%= f.label :gamer_tags %><br />
   <%= f.text_field :gamer_tags %></p>
 
-  <p> pizza toppings</p>
-  <INPUT NAME="Toppings" TYPE="CHECKBOX" VALUE="o1">
-  Pepperoni<BR>
-<INPUT NAME="Toppings" TYPE="CHECKBOX" VALUE="o2">
-  Sausage<BR>
-<INPUT NAME="Toppings" TYPE="CHECKBOX" VALUE="o3">
-  Bacon<BR>
-<INPUT NAME="Toppings" TYPE="CHECKBOX" VALUE="o4">
-  Ham<BR>
-<INPUT NAME="Toppings" TYPE="CHECKBOX" VALUE="o5">
-  Mushrooms<BR>
-<INPUT NAME="Toppings" TYPE="CHECKBOX" VALUE="o6">
-  Green Peppers<BR>
-
+  <p><%= f.select() %>
 
   <p><%= f.submit "Sign up" %></p>
 <% end %>

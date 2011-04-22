@@ -2,8 +2,8 @@ class ClubMember < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
 
-  has_many :user_toppings
-  has_many :toppings, :through => :user_toppings
+  has_and_belongs_to_many :toppings
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

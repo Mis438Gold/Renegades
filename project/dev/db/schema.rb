@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110413214108) do
+ActiveRecord::Schema.define(:version => 20110422043114) do
 
   create_table "club_members", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(:version => 20110413214108) do
 
   add_index "club_members", ["email"], :name => "index_club_members_on_email", :unique => true
   add_index "club_members", ["reset_password_token"], :name => "index_club_members_on_reset_password_token", :unique => true
+
+  create_table "club_members_events", :id => false, :force => true do |t|
+    t.integer "club_member_id", :default => 0, :null => false
+    t.integer "event_id",       :default => 0, :null => false
+  end
+
+  create_table "club_members_toppings", :id => false, :force => true do |t|
+    t.integer "club_member_id"
+    t.integer "topping_id"
+  end
+
+  add_index "club_members_toppings", ["club_member_id", "topping_id"], :name => "index_club_members_toppings_on_club_member_id_and_topping_id"
 
   create_table "event_types", :force => true do |t|
     t.string   "name"
@@ -215,12 +227,5 @@ ActiveRecord::Schema.define(:version => 20110413214108) do
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
-
-  create_table "users_toppings", :id => false, :force => true do |t|
-    t.integer "toppings_id"
-    t.integer "user_id"
-  end
-
-  add_index "users_toppings", ["toppings_id", "user_id"], :name => "index_users_toppings_on_toppings_id_and_user_id"
 
 end
