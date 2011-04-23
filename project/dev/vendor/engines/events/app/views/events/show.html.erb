@@ -1,0 +1,79 @@
+<% content_for :body_content_title do %>
+  <%= @event.Title %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <h1 style="display: inline;">
+      <%=raw @event.Title %>
+    </h1>
+    <span>(<%=raw EventType.find(@event.event_type_id).name %>)</span>
+  </section>
+  <section>
+    <h1>Date</h1>
+    <p>
+      <%=raw @event.startdate.strftime("%m/%d/%Y %I:%M %p") %> - <%=raw @event.enddate.strftime("%m/%d/%Y %I:%M %p") %>
+    </p>
+  </section>
+  <section>
+    <h1>Description</h1>
+    <p>
+      <%=raw @event.description %>
+    </p>
+  </section>
+<section>
+  <p>
+
+      <% if @event.startdate > Date.today() %>
+    <!--This is where we determine if a user is attending or not-->
+  <h1> Attending? </h1>
+
+  <%
+      attending = false
+      @event.club_members.each do |cm|
+        # The values 6 needs to be changed to whatever it is that says that a user is "logged on"
+          if cm.id == 6
+            attending = true
+            break
+          end
+      end
+%>
+
+
+  <form method="get" action="/events/<%=  @event.id %>">
+    <% if attending %> <input type="submit" value="I'm not Attending" />
+    ><input type=hidden" value="0" name="attending" />
+    <% else %> <input type="submit" value="I'm Attending" /><input type="hidden" value="1" name="attending" />
+    <%end%>
+  </form>
+    <% end %>
+        </p>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2>Attendees</h2>
+    <ul id="events">
+      <% @event.club_members.each do |cm| %>
+        <li>
+          <%= cm.username %>
+        </li>
+      <% end %>
+    </ul>
+    <h2><%= t('.other') %></h2>
+    <ul id="events">
+      <% @events.each do |event| %>
+         <% if event.startdate > Date.today() %>
+          <li>
+            <%= link_to event.Title, event_url(event) %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+  </aside>
+<% end %>
+
+
+<%= render :partial => "/shared/content_page" %>
+
