@@ -10,7 +10,7 @@
   <%= f.password_field :password %></p>
 
   <p><%= f.label :password_confirmation %><br />
-  <%= f.text_field :password_confirmation %></p>
+  <%= f.password_field :password_confirmation %></p>
   
   <p><%= f.label :username %><br />
   <%= f.text_field :username %></p>
@@ -27,10 +27,6 @@
   <p><%= f.label :gender %><br />
   <%= f.text_field :gender %></p>
 
-  <p><%= f.label :gamer_tags %><br />
-  <%= f.text_field :gamer_tags %></p>
-
-  <p><%= f.select() %>
 
   <p><%= f.submit "Sign up" %></p>
 <% end %>

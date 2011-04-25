@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422043114) do
+ActiveRecord::Schema.define(:version => 20110425212639) do
 
   create_table "club_members", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20110422043114) do
   end
 
   create_table "club_members_toppings", :id => false, :force => true do |t|
-    t.integer "club_member_id"
-    t.integer "topping_id"
+    t.integer "club_member_id", :default => 0, :null => false
+    t.integer "topping_id",     :default => 0, :null => false
   end
 
   add_index "club_members_toppings", ["club_member_id", "topping_id"], :name => "index_club_members_toppings_on_club_member_id_and_topping_id"
@@ -193,6 +193,12 @@ ActiveRecord::Schema.define(:version => 20110422043114) do
   add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "student_statuses", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "StudentStatus"
+  end
 
   create_table "toppings", :force => true do |t|
     t.string "toppings"

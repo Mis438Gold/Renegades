@@ -10,6 +10,6 @@ class ClubMember < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :username,
-                  :first_name, :last_name, :current_student_status, :gender,
-                  :gamer_tags
+                  :first_name, :last_name, :current_student_status, :gender
+                
 end
