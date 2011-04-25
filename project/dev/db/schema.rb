@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110425212639) do
+ActiveRecord::Schema.define(:version => 20110425224757) do
 
   create_table "club_members", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -195,9 +195,7 @@ ActiveRecord::Schema.define(:version => 20110425212639) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "student_statuses", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "StudentStatus"
+    t.string "StudentStatus"
   end
 
   create_table "toppings", :force => true do |t|

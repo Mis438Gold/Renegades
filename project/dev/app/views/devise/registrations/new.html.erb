@@ -21,14 +21,22 @@
   <p><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></p>
 
-  <p><%= f.label :current_student_status %><br />
-  <%= f.text_field :current_student_status %></p>
 
   <p><%= f.label :gender %><br />
   <%= f.text_field :gender %></p>
 
 
+  <div class='field'>
+ <label for="club_member_current_student_status:">Student Status</label>
+    <br/>
+ 
+    <select name="club_member[current_student_status]" >
+      <% StudentStatus.find(:all).each do |t| %>
+      <option value="<%=  t.id %>"><%= t.StudentStatus %></option>
+      <% end %>
+    </select>
+  </div>
+
   <p><%= f.submit "Sign up" %></p>
 <% end %>
-
 <%= render :partial => "devise/shared/links" %>
