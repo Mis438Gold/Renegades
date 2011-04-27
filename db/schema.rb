@@ -10,7 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110325003225) do
+ActiveRecord::Schema.define(:version => 20110423031711) do
+
+  create_table "club_members", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "club_members", ["email"], :name => "index_club_members_on_email", :unique => true
+  add_index "club_members", ["reset_password_token"], :name => "index_club_members_on_reset_password_token", :unique => true
+
+  create_table "club_members_games", :id => false, :force => true do |t|
+    t.integer "club_member_id", :default => 0, :null => false
+    t.integer "game_id",                       :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.text     "comment"
+    t.boolean  "approved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "consoles", :force => true do |t|
     t.string   "name"
@@ -24,6 +58,27 @@ ActiveRecord::Schema.define(:version => 20110325003225) do
   end
 
   add_index "consoles_games", ["console_id", "game_id"], :name => "index_consoles_games_on_console_id_and_game_id"
+
+  create_table "event_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_types", ["id"], :name => "index_event_types_on_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "Title"
+    t.datetime "startdate"
+    t.datetime "enddate"
+    t.text     "description"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "event_type_id"
+  end
+
+  add_index "events", ["id"], :name => "index_events_on_id"
 
   create_table "games", :force => true do |t|
     t.string   "title"

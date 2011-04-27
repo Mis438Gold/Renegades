@@ -1,4 +1,119 @@
-/*
-  Override default refinery application CSS below.
-  Formatting applies to all frontend.
-*/
+body {
+    margin: 0px;
+    font: 12px 'helvetica neue',helvetica,arial,sans-serif;
+}
+
+a:hover {
+    color:#999999;
+}
+
+#page, #site_bar_content, footer, #headertop {
+    width: 1000px;
+    margin: 0px auto;
+}
+
+header {
+    width:100%;
+    background: #1C1919;
+}
+
+#headertop {
+    height:60px;
+    padding-top: 40px;
+    overflow: auto;
+}
+
+#halfback {
+    height:227px;
+    margin-bottom: -227px;
+    background: #1C1919;
+}
+
+#hlogo {
+    float:left;
+}
+#menu {
+    float:right;
+ }
+
+
+#body_content_left {
+    float: left;
+    width: 600px;
+}
+#body_content_right {
+    float: right;
+    width: 400px;
+}
+#body_content_left .inner {
+    padding-right: 10px;
+}
+#body_content_right .inner {
+    padding-left: 10px;
+}
+#body_content.no_body_content_left #body_content_right,
+#body_content.no_body_content_right #body_content_left {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.menu ul {
+    margin: 22px 0px 0px 0px;
+    padding: 0px;
+}
+.menu li {
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px 9px 0px 0px;
+    list-style: none;
+    float: left;
+    font-weight: bold;
+}
+.menu li a {
+    color:#FFFFFF;
+    text-decoration: none;
+}
+.menu li a:hover {
+    color: #999999;
+}
+.menu li.last {
+    margin-right: 0px;
+}
+.menu li.selected > a {
+    font-weight: bold;
+}
+.inquiries form label {
+    width: 150px;
+    float: left;
+}
+.inquiries form input {
+    width: 200px;
+}
+.inquiries form input, .inquiries form textarea {
+
+}
+.inquiries form textarea {
+
+}
+.inquiries form .actions {
+    margin-left: 150px;
+}
+.inquiries form .actions input {
+    width: auto;
+}
+.inquiries .field {
+    margin: 12px 0px;
+}
+.inquiries form {
+    padding-top: 12px;
+}
+.page_not_live {
+    border: 1px solid #A00027;
+    color: #A00027;
+    background: #FFB1B1;
+    padding:3px 9px;
+    font-weight:bold;
+    width:auto;
+}

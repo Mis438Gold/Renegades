@@ -59,3 +59,5 @@ gem 'refinerycms-i18n',         '~> 0.9.9.11'
 # END USER DEFINED
 
 gem 'refinerycms-games', '1.0', :path => 'vendor/engines'
+
+gem 'refinerycms-events', '1.0', :path => 'vendor/engines'

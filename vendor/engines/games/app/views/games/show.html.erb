@@ -4,10 +4,17 @@
 
 <% content_for :body_content_left do %>
   <section>
-    <h1>Title</h1>
-    <p>
+    <h1>
       <%=raw @game.title %>
-    </p>
+    </h1>
+  </section>
+  <section>
+    <h1>Platforms</h1>
+    <ul>
+      <% @game.consoles.each do |c|%>
+        <li><%=raw c.name %></li>
+      <% end %>
+    </ul>
   </section>
   <section>
     <h1>Description</h1>
@@ -15,19 +22,76 @@
       <%=raw @game.description %>
     </p>
   </section>
+
+
+  <section>
+    <p>
+      <!--This is where we determine if a user owns a game or not-->
+    <h1> Do you own this game? </h1>
+    <%
+    owner = false
+    @game.club_members.each do |cm|
+      # The values 6 needs to be changed to whatever it is that says that a user is "logged on"
+      if cm.id == 6
+        owner = true
+        break
+      end
+    end
+  %>
+
+    <form method="get" action="/games/<%=  @game.id %>">
+      <% if owner %>
+        <input type="submit" value="I do not own this game" />
+        <input type="hidden" value="0" name="owning" />
+      <% else %>
+        <input type="submit" value="I own this game" />
+        <input type="hidden" value="1" name="owning" />
+      <%end%>
+    </form>
+
+  </p>
+
+  <section>
+    <p>
+    <h1> Comments </h1>
+      
+      <form  method="get" action="/games/<%=  @game.id %>">
+      <textarea name="comment"></textarea>
+      <br>
+        <input type="submit" value="Post Comment"/>
+      </br>
+      </form>
+    <ul id="games">
+      <% @game.comments.each do |cm| %>
+        <%if cm.approved%>
+          <li>
+            <%= cm.comment %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    
+    </p>
 <% end %>
 
 <% content_for :body_content_right do %>
   <aside>
-    <h2><%= t('.other') %></h2>
+    <h2>Game Owners</h2>
     <ul id="games">
-      <% @games.each do |game| %>
+      <% @game.club_members.each do |cm| %>
         <li>
-          <%= link_to game.title, game_url(game) %>
+          <%= cm.username %>
         </li>
       <% end %>
-    </ul>
-  </aside>
-<% end %>
-
-<%= render :partial => "/shared/content_page" %>
+    </ul><aside>
+      <h2><%= t('.other') %></h2>
+      <ul id="games">
+        <% @games.each do |game| %>
+          <li>
+            <%= link_to game.title, game_url(game) %>
+          </li>
+        <% end %>
+      </ul>
+    </aside>
+  <% end %>
+  <%= render :partial => "/shared/content_page" %>
