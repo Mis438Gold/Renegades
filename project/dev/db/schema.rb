@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110425224757) do
+ActiveRecord::Schema.define(:version => 20110427014314) do
 
   create_table "club_members", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110425224757) do
     t.string   "current_student_status"
     t.string   "gender"
     t.string   "gamer_tags"
+    t.boolean  "fully_registered"
   end
 
   add_index "club_members", ["email"], :name => "index_club_members_on_email", :unique => true
