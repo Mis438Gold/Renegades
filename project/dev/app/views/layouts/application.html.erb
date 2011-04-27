@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <div id="club_member_nav">
+    <% if club_member_signed_in? %>
+       Signed in as <%= current_club_member.email %>. Not you?
+       <%= link_to "Sign out", destroy_club_member_session_path %>
+      <% else %>
+        <%= link_to "Sign up", new_club_member_registration_path %> or
+      <%= link_to "Sign in", new_club_member_session_path %>
+      <% end %>
+    </div>
+
+  <%= stylesheet_link_tag :all %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
